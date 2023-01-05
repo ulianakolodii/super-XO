@@ -1,7 +1,11 @@
-import { Box } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 
 const WinnerBox = () => {
-  return <Box>The winner is you!</Box>;
+  return (
+    <Box>
+      <Typography variant="h6">The winner is you!</Typography>
+    </Box>
+  );
 };
 
 export default WinnerBox;
