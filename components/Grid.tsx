@@ -1,6 +1,8 @@
 import { FC } from "react";
 import { Box } from "@mui/material";
 import { Block } from "../types/Block";
+import HomeButton from "../components/HomeButton";
+import WinnerBox from "./WinnerBox";
 
 const Grid: FC<{ items: Array<Block>; onClick: (index: number) => void }> = ({
   items,
@@ -14,13 +16,23 @@ const Grid: FC<{ items: Array<Block>; onClick: (index: number) => void }> = ({
         bottom: 0,
         right: 0,
         display: "flex",
+        flexDirection: "column",
         alignContent: "center",
+        alignItems: "center",
         justifyContent: "center",
         flexWrap: "wrap",
         backgroundColor: "white",
       }}
     >
-      <Box sx={{ width: 320, display: "flex", flexWrap: "wrap", gap: 1 }}>
+      <Box
+        sx={{
+          width: 320,
+          display: "flex",
+          flexWrap: "wrap",
+          gap: 1,
+          justifyContent: "center",
+        }}
+      >
         {items.map(({ id, value }) => {
           return (
             <Box
@@ -36,6 +48,12 @@ const Grid: FC<{ items: Array<Block>; onClick: (index: number) => void }> = ({
             </Box>
           );
         })}
+      </Box>
+      <Box sx={{ marginTop: 3 }}>
+        <WinnerBox />
+      </Box>
+      <Box sx={{ marginTop: 3 }}>
+        <HomeButton />
       </Box>
     </Box>
   );
