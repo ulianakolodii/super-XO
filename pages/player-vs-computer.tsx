@@ -2,7 +2,7 @@ import { useMemo, useState } from "react";
 import Grid from "../components/Grid";
 import HomeButton from "../components/HomeButton";
 
-const PlayerVsPlayer = () => {
+const PlayerVsComputer = () => {
   const [items, setItems] = useState([
     { id: 0, value: "" },
     { id: 1, value: "" },
@@ -28,4 +28,4 @@ const PlayerVsPlayer = () => {
   );
 };
 
-export default PlayerVsPlayer;
+export default PlayerVsComputer;

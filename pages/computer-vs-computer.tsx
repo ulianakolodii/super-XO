@@ -1,8 +1,9 @@
 import { useMemo, useState } from "react";
+import { Box } from "@mui/material";
 import Grid from "../components/Grid";
 import HomeButton from "../components/HomeButton";
 
-const PlayerVsPlayer = () => {
+const ComputerVsComputer = () => {
   const [items, setItems] = useState([
     { id: 0, value: "" },
     { id: 1, value: "" },
@@ -21,11 +22,11 @@ const PlayerVsPlayer = () => {
   const handleBoxClick = () => {};
 
   return (
-    <>
+    <Box>
       <Grid items={items} onClick={handleBoxClick}></Grid>
       <HomeButton />
-    </>
+    </Box>
   );
 };
 
-export default PlayerVsPlayer;
+export default ComputerVsComputer;

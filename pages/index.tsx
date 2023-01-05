@@ -1,4 +1,7 @@
 import Head from "next/head";
+import { Box, Button, ButtonGroup } from "@mui/material";
+import Link from "next/link";
+import { flexbox } from "@mui/system";
 
 export default function Home() {
   return (
@@ -9,7 +12,29 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main></main>
+      <main>
+        <Box
+          sx={{
+            height: "100vh",
+            backgroundColor: "white",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <ButtonGroup variant="text" aria-label="text button group">
+            <Button>
+              <Link href="/player-vs-player">Player vs Player</Link>
+            </Button>
+            <Button>
+              <Link href="/player-vs-computer">Player vs Computer</Link>
+            </Button>
+            <Button>
+              <Link href="/computer-vs-computer">Computer vs Computer</Link>
+            </Button>
+          </ButtonGroup>
+        </Box>
+      </main>
     </>
   );
 }
