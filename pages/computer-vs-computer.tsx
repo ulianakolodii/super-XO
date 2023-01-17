@@ -21,8 +21,27 @@ const ComputerVsComputer = () => {
     () => items.filter((item) => item.value === ""),
     [items]
   );
-const winnerX = useMemo(() => isWinner(items, "x"), [items])
-const winnerO = useMemo(() => isWinner(items, "o"), [items])
+  const winnerX = useMemo(() => isWinner(items, "x"), [items]);
+  const winnerO = useMemo(() => isWinner(items, "o"), [items]);
+  const isEnd = useMemo(
+    () => winnerX || winnerO || availableItems.length === 0,
+    [winnerX, winnerO, availableItems]
+  );
+
+  const setStateByIndex = useCallback(
+    (index: number) => {
+      if (!isEnd && items[index].value === "") {
+        const item = items[index];
+        setItems((prevItems) => {
+          const newItems = [...prevItems];
+          newItems[item.id].value = current;
+          return newItems;
+        });
+        setCurrent((prevCurrent) => (prevCurrent === "x" ? "o" : "x"));
+      }
+    },
+    [current, items, isEnd]
+  );
 
   const handleBoxClick = useCallback(() => {
     // if (availableItems.length > 0 && !winnerX !winnerO) {
