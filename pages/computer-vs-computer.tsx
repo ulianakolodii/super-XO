@@ -1,7 +1,7 @@
-import { useMemo, useState } from "react";
-import { Box } from "@mui/material";
+import { useCallback, useMemo, useState } from "react";
 import Grid from "../components/Grid";
-import HomeButton from "../components/HomeButton";
+import { getRandomNumberTo } from "../utils/getRandomNumberTo";
+import { isWinner } from "../utils/isWinner";
 
 const ComputerVsComputer = () => {
   const [items, setItems] = useState([
@@ -21,8 +21,15 @@ const ComputerVsComputer = () => {
     () => items.filter((item) => item.value === ""),
     [items]
   );
+const winnerX = useMemo(() => isWinner(items, "x"), [items])
+const winnerO = useMemo(() => isWinner(items, "o"), [items])
 
-  const handleBoxClick = () => {};
+  const handleBoxClick = useCallback(() => {
+    // if (availableItems.length > 0 && !winnerX !winnerO) {
+    //   const randomIndex = getRandomNumberTo(availableItems.length - 1);
+    //   const randomItem = availableItems[randomIndex]
+    // }
+  }, [availableItems, winnerX, winnerO]);
 
   return (
     <>
