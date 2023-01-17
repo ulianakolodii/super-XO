@@ -44,11 +44,12 @@ const ComputerVsComputer = () => {
   );
 
   const handleBoxClick = useCallback(() => {
-    // if (availableItems.length > 0 && !winnerX !winnerO) {
-    //   const randomIndex = getRandomNumberTo(availableItems.length - 1);
-    //   const randomItem = availableItems[randomIndex]
-    // }
-  }, [availableItems, winnerX, winnerO]);
+    if (availableItems.length > 0 && !winnerX && !winnerO) {
+      const randomIndex = getRandomNumberTo(availableItems.length - 1);
+      const randomItem = availableItems[randomIndex];
+      setStateByIndex(randomItem.id);
+    }
+  }, [availableItems, winnerX, winnerO, setStateByIndex]);
 
   return (
     <>
