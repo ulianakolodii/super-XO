@@ -23,7 +23,6 @@ const PlayerVsPlayer = () => {
   return (
     <>
       <Grid items={items} onClick={handleBoxClick}></Grid>
-      <HomeButton />
     </>
   );
 };

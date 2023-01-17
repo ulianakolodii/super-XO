@@ -17,25 +17,16 @@ const ComputerVsComputer = () => {
   ]);
   const [current, setCurrent] = useState("x");
 
-  //   const availableItems = useMemo(() => )
+  const availableItems = useMemo(
+    () => items.filter((item) => item.value === ""),
+    [items]
+  );
 
   const handleBoxClick = () => {};
 
   return (
     <>
       <Grid items={items} onClick={handleBoxClick}></Grid>
-      {/* <Box sx={{
-        position: "relative",
-        top: 0,
-        left: 0,
-        bottom: 0,
-        right: 0,
-        display: "flex",
-        alignContent: "center",
-        justifyContent: "center",
-      }}>
-        <HomeButton />
-      </Box> */}
     </>
   );
 };
