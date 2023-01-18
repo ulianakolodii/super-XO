@@ -9,7 +9,8 @@ const Grid: FC<{
   onClick: (index: number) => void;
   winnerX: boolean;
   winnerO: boolean;
-}> = ({ items, winnerX, winnerO }) => {
+  draw: boolean;
+}> = ({ items, winnerX, winnerO, draw }) => {
   return (
     <Box
       sx={{
@@ -56,7 +57,7 @@ const Grid: FC<{
         })}
       </Box>
       <Box sx={{ marginTop: 3 }}>
-        <WinnerBox winnerX={winnerX} winnerO={winnerO} />
+        <WinnerBox winnerX={winnerX} winnerO={winnerO} draw={draw}/>
       </Box>
       <Box sx={{ marginTop: 3 }}>
         <HomeButton />

@@ -76,6 +76,7 @@ const ComputerVsComputer = () => {
         onClick={handleBoxClick}
         winnerX={winnerX}
         winnerO={winnerO}
+        draw={availableItems.length === 0}
       ></Grid>
     </>
   );

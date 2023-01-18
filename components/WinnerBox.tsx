@@ -1,9 +1,10 @@
 import { Box, Typography } from "@mui/material";
 import { FC } from "react";
 
-const WinnerBox: FC<{ winnerX: boolean; winnerO: boolean }> = ({
+const WinnerBox: FC<{ winnerX: boolean; winnerO: boolean, draw: boolean }> = ({
   winnerX,
   winnerO,
+  draw
 }) => {
   const winnerIs = () => {
     if (winnerX) {
@@ -12,11 +13,11 @@ const WinnerBox: FC<{ winnerX: boolean; winnerO: boolean }> = ({
     if (winnerO) {
       return "The winner is O!";
     }
-    // if (!winnerO && !winnerX && ) {
-    //   return "The Draw!";
-    // }
+    if (draw) {
+      return "The Draw!";
+    }
     else {
-      return "The game is playing...";
+      return "The game is being played...";
     }
   };
   winnerIs();
