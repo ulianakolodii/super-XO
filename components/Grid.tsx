@@ -4,9 +4,12 @@ import { Block } from "../types/Block";
 import HomeButton from "../components/HomeButton";
 import WinnerBox from "./WinnerBox";
 
-const Grid: FC<{ items: Array<Block>; onClick: (index: number) => void }> = ({
-  items,
-}) => {
+const Grid: FC<{
+  items: Array<Block>;
+  onClick: (index: number) => void;
+  winnerX: boolean;
+  winnerO: boolean;
+}> = ({ items, winnerX, winnerO }) => {
   return (
     <Box
       sx={{
@@ -42,6 +45,9 @@ const Grid: FC<{ items: Array<Block>; onClick: (index: number) => void }> = ({
                 height: 100,
                 border: "solid grey 1px",
                 cursor: "pointer",
+                textAlign: "center",
+                fontSize: 50,
+                paddingTop: "15px",
               }}
             >
               {value}
@@ -50,7 +56,7 @@ const Grid: FC<{ items: Array<Block>; onClick: (index: number) => void }> = ({
         })}
       </Box>
       <Box sx={{ marginTop: 3 }}>
-        <WinnerBox />
+        <WinnerBox winnerX={winnerX} winnerO={winnerO} />
       </Box>
       <Box sx={{ marginTop: 3 }}>
         <HomeButton />
