@@ -54,15 +54,15 @@ const ComputerVsComputer = () => {
     }
   }, [availableItems, winnerX, winnerO, setStateByIndex]);
 
-  // const reset = useCallback(() => {
-  //   setItems(defaultItems);
-  // }, [setItems])
+  const reset = useCallback(() => {
+    setItems(defaultItems);
+  }, [setItems]);
 
-  // const handleReset = useCallback(() => {
-  //   if (isEnd) {
-  //     reset();
-  //   }
-  // }, [reset, isEnd]);
+  const handleReset = useCallback(() => {
+    if (isEnd) {
+      reset();
+    }
+  }, [reset, isEnd]);
 
   useEffect(() => {
     const timer = setTimeout(handleBoxClick, 500);
@@ -77,6 +77,7 @@ const ComputerVsComputer = () => {
         winnerX={winnerX}
         winnerO={winnerO}
         draw={availableItems.length === 0}
+        handleReset={handleReset}
       ></Grid>
     </>
   );

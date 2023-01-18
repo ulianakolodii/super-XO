@@ -10,7 +10,8 @@ const Grid: FC<{
   winnerX: boolean;
   winnerO: boolean;
   draw: boolean;
-}> = ({ items, winnerX, winnerO, draw }) => {
+  handleReset: () => void;
+}> = ({ items, winnerX, winnerO, draw, handleReset }) => {
   return (
     <Box
       sx={{
@@ -57,10 +58,10 @@ const Grid: FC<{
         })}
       </Box>
       <Box sx={{ marginTop: 3 }}>
-        <WinnerBox winnerX={winnerX} winnerO={winnerO} draw={draw}/>
+        <WinnerBox winnerX={winnerX} winnerO={winnerO} draw={draw} />
       </Box>
       <Box sx={{ marginTop: 3 }}>
-        <HomeButton />
+        <HomeButton handleReset={handleReset} />
       </Box>
     </Box>
   );
