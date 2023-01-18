@@ -58,11 +58,15 @@ const ComputerVsComputer = () => {
     setItems(defaultItems);
   }, [setItems]);
 
-  const handleReset = useCallback(() => {
-    if (isEnd) {
-      reset();
-    }
-  }, [reset, isEnd]);
+  const handleReset = () => {
+    console.log("reset");
+  };
+
+  // const handleReset = useCallback(() => {
+  //   if (isEnd) {
+  //     reset();
+  //   }
+  // }, [reset, isEnd]);
 
   useEffect(() => {
     const timer = setTimeout(handleBoxClick, 500);
