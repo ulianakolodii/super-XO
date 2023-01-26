@@ -17,7 +17,9 @@ const defaultItems: Array<Block> = [
 ];
 
 const ComputerVsComputer = () => {
-  const [items, setItems] = useState(defaultItems);
+  const [items, setItems] = useState(
+    defaultItems.slice().map((el) => ({ ...el }))
+  );
   const [current, setCurrent] = useState("x");
 
   const availableItems = useMemo(
@@ -55,18 +57,15 @@ const ComputerVsComputer = () => {
   }, [availableItems, winnerX, winnerO, setStateByIndex]);
 
   const reset = useCallback(() => {
+    console.log("defaultItems", defaultItems);
+
     setItems(defaultItems);
   }, [setItems]);
 
-  const handleReset = () => {
-    console.log("reset");
-  };
-
-  // const handleReset = useCallback(() => {
-  //   if (isEnd) {
-  //     reset();
-  //   }
-  // }, [reset, isEnd]);
+  const handleReset = useCallback(() => {
+    console.log("reset", defaultItems);
+    reset();
+  }, [reset]);
 
   useEffect(() => {
     const timer = setTimeout(handleBoxClick, 500);
