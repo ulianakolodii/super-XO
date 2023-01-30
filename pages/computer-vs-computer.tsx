@@ -57,13 +57,10 @@ const ComputerVsComputer = () => {
   }, [availableItems, winnerX, winnerO, setStateByIndex]);
 
   const reset = useCallback(() => {
-    console.log("defaultItems", defaultItems);
-
     setItems(defaultItems);
   }, [setItems]);
 
   const handleReset = useCallback(() => {
-    console.log("reset", defaultItems);
     reset();
   }, [reset]);
 
