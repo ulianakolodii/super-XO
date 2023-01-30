@@ -24,14 +24,8 @@ const ComputerVsComputer = () => {
     defaultItems.slice().map((el) => ({ ...el }))
   );
   const [draw, setDraw] = useState(false);
-
-  const availableItems = useMemo(() => filterAvailable(items), [items]);
-  const winnerX = useMemo(() => isWinner(items, "x"), [items]);
-  const winnerO = useMemo(() => isWinner(items, "o"), [items]);
-  const isEnd = useMemo(
-    () => winnerX || winnerO || availableItems.length === 0,
-    [winnerX, winnerO, availableItems]
-  );
+  const [winnerX, setWinnerX] = useState(false);
+  const [winnerO, setWinnerO] = useState(false);
 
   const handleBoxClick = useCallback(
     ({ id }: { id: number }) => {
@@ -39,7 +33,11 @@ const ComputerVsComputer = () => {
         const newItems = [...prevItems];
         newItems[id].value = "x";
         const localAvailableItems = filterAvailable(prevItems);
-        if (winnerX || winnerO) {
+        if (isWinner(prevItems, "x")) {
+          setWinnerX(true)
+          return prevItems;
+        } else if (isWinner(prevItems, "o")) {
+          setWinnerO(true)
           return prevItems;
         } else if (!localAvailableItems.length) {
           setDraw(true);
@@ -51,7 +49,7 @@ const ComputerVsComputer = () => {
         return newItems;
       });
     },
-    [winnerO, winnerX]
+    []
   );
 
   const reset = useCallback(() => {
