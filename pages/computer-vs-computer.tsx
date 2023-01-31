@@ -26,6 +26,7 @@ const ComputerVsComputer = () => {
     () => items.filter((item) => item.value === ""),
     [items]
   );
+
   const winnerX = useMemo(() => isWinner(items, "x"), [items]);
   const winnerO = useMemo(() => isWinner(items, "o"), [items]);
   const isEnd = useMemo(
@@ -57,8 +58,19 @@ const ComputerVsComputer = () => {
   }, [availableItems, winnerX, winnerO, setStateByIndex]);
 
   const reset = useCallback(() => {
-    setItems(defaultItems);
-  }, [setItems]);
+    setItems([
+      { id: 0, value: "" },
+      { id: 1, value: "" },
+      { id: 2, value: "" },
+      { id: 3, value: "" },
+      { id: 4, value: "" },
+      { id: 5, value: "" },
+      { id: 6, value: "" },
+      { id: 7, value: "" },
+      { id: 8, value: "" },
+    ]);
+    setCurrent("x");
+  }, [setItems, setCurrent]);
 
   const handleReset = useCallback(() => {
     reset();

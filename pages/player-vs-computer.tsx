@@ -28,33 +28,44 @@ const ComputerVsComputer = () => {
   const [winnerO, setWinnerO] = useState(false);
 
   const handleBoxClick = useCallback(
-    ({ id, value }: { id: number, value: string }) => {
+    ({ id, value }: { id: number; value: string }) => {
       if (value === "") {
         setItems((prevItems) => {
-        const newItems = [...prevItems];
-        newItems[id].value = "x";
-        const localAvailableItems = filterAvailable(prevItems);
-        if (isWinner(prevItems, "x")) {
-          setWinnerX(true)
-          return prevItems;
-        } else if (isWinner(prevItems, "o")) {
-          setWinnerO(true)
-          return prevItems;
-        } else if (!localAvailableItems.length) {
-          setDraw(true);
-          return prevItems;
-        }
-        const randomIndex = getRandomNumberTo(localAvailableItems.length - 1);
-        const randomItem = localAvailableItems[randomIndex];
-        newItems[randomItem.id].value = "o";
-        return newItems;
-      });
-    }},
+          const newItems = [...prevItems];
+          newItems[id].value = "x";
+          const localAvailableItems = filterAvailable(prevItems);
+          if (isWinner(prevItems, "x")) {
+            setWinnerX(true);
+            return prevItems;
+          } else if (isWinner(prevItems, "o")) {
+            setWinnerO(true);
+            return prevItems;
+          } else if (!localAvailableItems.length) {
+            setDraw(true);
+            return prevItems;
+          }
+          const randomIndex = getRandomNumberTo(localAvailableItems.length - 1);
+          const randomItem = localAvailableItems[randomIndex];
+          newItems[randomItem.id].value = "o";
+          return newItems;
+        });
+      }
+    },
     []
   );
 
   const reset = useCallback(() => {
-    setItems(defaultItems);
+    setItems([
+      { id: 0, value: "" },
+      { id: 1, value: "" },
+      { id: 2, value: "" },
+      { id: 3, value: "" },
+      { id: 4, value: "" },
+      { id: 5, value: "" },
+      { id: 6, value: "" },
+      { id: 7, value: "" },
+      { id: 8, value: "" },
+    ]);
   }, [setItems]);
 
   const handleReset = useCallback(() => {

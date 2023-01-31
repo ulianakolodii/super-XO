@@ -3,6 +3,7 @@ import { Box } from "@mui/material";
 import { Block } from "../types/Block";
 import HomeButton from "./HomeButton";
 import WinnerBox from "./WinnerBox";
+import ResetButton from "./ResetButton";
 
 const Grid: FC<{
   items: Array<Block>;
@@ -61,7 +62,8 @@ const Grid: FC<{
       <Box sx={{ marginTop: 3 }}>
         <WinnerBox winnerX={winnerX} winnerO={winnerO} draw={draw} />
       </Box>
-      <Box sx={{ marginTop: 3 }}>
+      <Box sx={{ marginTop: 3, display: "flex", gap: 1 }}>
+        <ResetButton handleReset={handleReset}/>
         <HomeButton handleReset={handleReset} />
       </Box>
     </Box>
