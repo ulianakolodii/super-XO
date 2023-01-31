@@ -45,6 +45,9 @@ const ComputerVsComputer = () => {
 
   const reset = useCallback(() => {
     setItems(defaultItems.slice().map((el) => ({ ...el })));
+    setDraw(false);
+    setWinnerO(false);
+    setWinnerX(false);
   }, [setItems]);
 
   const handleReset = useCallback(() => {
