@@ -1,12 +1,12 @@
 import { FC, MouseEventHandler } from "react";
 import { Box } from "@mui/material";
 import { Block } from "../types/Block";
-import HomeButton from "../components/HomeButton";
+import HomeButton from "./HomeButton";
 import WinnerBox from "./WinnerBox";
 
 const Grid: FC<{
   items: Array<Block>;
-  onClick: ({ id }: { id: number }) => void;
+  onClick: ({ id, value }: { id: number, value: string }) => void;
   winnerX: boolean;
   winnerO: boolean;
   draw: boolean;
@@ -41,7 +41,7 @@ const Grid: FC<{
         {items.map(({ id, value }) => {
           return (
             <Box
-              onClick={() => onClick({ id })}
+              onClick={() => onClick({ id, value})}
               key={id}
               sx={{
                 width: 100,

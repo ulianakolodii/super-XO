@@ -28,8 +28,9 @@ const ComputerVsComputer = () => {
   const [winnerO, setWinnerO] = useState(false);
 
   const handleBoxClick = useCallback(
-    ({ id }: { id: number }) => {
-      setItems((prevItems) => {
+    ({ id, value }: { id: number, value: string }) => {
+      if (value === "") {
+        setItems((prevItems) => {
         const newItems = [...prevItems];
         newItems[id].value = "x";
         const localAvailableItems = filterAvailable(prevItems);
@@ -48,7 +49,7 @@ const ComputerVsComputer = () => {
         newItems[randomItem.id].value = "o";
         return newItems;
       });
-    },
+    }},
     []
   );
 
