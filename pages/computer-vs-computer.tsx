@@ -3,39 +3,27 @@ import { defaultItems } from "../utils/defaultItems";
 import Grid from "../components/Grid";
 import { getRandomNumberTo } from "../utils/getRandomNumberTo";
 import { isWinner } from "../utils/isWinner";
-
+import useGame from "../hooks/useGame";
 
 const ComputerVsComputer = () => {
-  const [items, setItems] = useState(
-    defaultItems.slice().map((el) => ({ ...el }))
-  );
-  const [current, setCurrent] = useState("x");
-
-  const availableItems = useMemo(
-    () => items.filter((item) => item.value === ""),
-    [items]
-  );
-
-  const winnerX = useMemo(() => isWinner(items, "x"), [items]);
-  const winnerO = useMemo(() => isWinner(items, "o"), [items]);
-  const isEnd = useMemo(
-    () => winnerX || winnerO || availableItems.length === 0,
-    [winnerX, winnerO, availableItems]
-  );
+  const {
+    availableItems,
+    current,
+    items,
+    reset,
+    winnerO,
+    winnerX,
+    toggleCurrent,
+    setById,
+    statusMessage,
+  } = useGame();
 
   const setStateByIndex = useCallback(
     (index: number) => {
-      if (!isEnd && items[index].value === "") {
-        const item = items[index];
-        setItems((prevItems) => {
-          const newItems = [...prevItems];
-          newItems[item.id].value = current;
-          return newItems;
-        });
-        setCurrent((prevCurrent) => (prevCurrent === "x" ? "o" : "x"));
-      }
+      setById(index, current);
+      toggleCurrent();
     },
-    [current, items, isEnd]
+    [current, setById, toggleCurrent]
   );
 
   const handleBoxClick = useCallback(() => {
@@ -46,15 +34,6 @@ const ComputerVsComputer = () => {
     }
   }, [availableItems, winnerX, winnerO, setStateByIndex]);
 
-  const reset = useCallback(() => {
-    setItems(defaultItems.slice().map((el) => ({ ...el })));
-    setCurrent("x");
-  }, [setItems, setCurrent]);
-
-  const handleReset = useCallback(() => {
-    reset();
-  }, [reset]);
-
   useEffect(() => {
     const timer = setTimeout(handleBoxClick, 500);
     return () => clearTimeout(timer);
@@ -64,11 +43,8 @@ const ComputerVsComputer = () => {
     <>
       <Grid
         items={items}
-        onClick={handleBoxClick}
-        winnerX={winnerX}
-        winnerO={winnerO}
-        draw={availableItems.length === 0}
-        handleReset={handleReset}
+        statusMessage={statusMessage}
+        handleReset={reset}
       ></Grid>
     </>
   );

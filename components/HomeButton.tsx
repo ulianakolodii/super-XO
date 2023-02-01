@@ -4,7 +4,7 @@ import Link from "next/link";
 
 const HomeButton: FC<{
   handleReset: () => void;
-}> = ({handleReset}) => {
+}> = ({ handleReset }) => {
   return (
     <Button variant="outlined" onClick={handleReset}>
       <Link href="/">Choose mode</Link>

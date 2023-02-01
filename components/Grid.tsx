@@ -7,12 +7,10 @@ import ResetButton from "./ResetButton";
 
 const Grid: FC<{
   items: Array<Block>;
-  onClick: ({ id, value }: { id: number, value: string }) => void;
-  winnerX: boolean;
-  winnerO: boolean;
-  draw: boolean;
+  onClick?: ({ id, value }: { id: number; value: string }) => void;
+  statusMessage: string;
   handleReset: () => void;
-}> = ({ items, winnerX, winnerO, draw, handleReset, onClick }) => {
+}> = ({ items, statusMessage, handleReset, onClick }) => {
   return (
     <Box
       sx={{
@@ -42,7 +40,7 @@ const Grid: FC<{
         {items.map(({ id, value }) => {
           return (
             <Box
-              onClick={() => onClick({ id, value})}
+              onClick={() => onClick?.({ id, value })}
               key={id}
               sx={{
                 width: 100,
@@ -60,10 +58,10 @@ const Grid: FC<{
         })}
       </Box>
       <Box sx={{ marginTop: 3 }}>
-        <WinnerBox winnerX={winnerX} winnerO={winnerO} draw={draw} />
+        <WinnerBox>{statusMessage}</WinnerBox>
       </Box>
       <Box sx={{ marginTop: 3, display: "flex", gap: 1 }}>
-        <ResetButton handleReset={handleReset}/>
+        <ResetButton handleReset={handleReset} />
         <HomeButton handleReset={handleReset} />
       </Box>
     </Box>
