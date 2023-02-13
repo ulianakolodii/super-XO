@@ -20,15 +20,13 @@ const useGame = (initialCurrent: "x" | "o" = "x") => {
   const setById = (id: number, value: "o" | "x") => {
     setItems((prevItems) => {
       const newItems = [...prevItems];
+      if (winnerX || winnerO || draw) {
+        return prevItems;
+      }
       newItems[id].value = value;
       return newItems;
     });
   };
-
-  const isEnd = useMemo(
-    () => winnerX || winnerO || draw,
-    [winnerX, winnerO, draw]
-  );
 
   const reset = useCallback(() => {
     setItems(defaultItems.slice().map((el) => ({ ...el })));
@@ -59,7 +57,6 @@ const useGame = (initialCurrent: "x" | "o" = "x") => {
     availableItems,
     winnerO,
     winnerX,
-    isEnd,
     draw,
     setById,
     statusMessage,
